@@ -1,8 +1,6 @@
 // controller
 
 import { AppState } from "./AppState.js"
-import { Racer } from "./models/Racer.js"
-
 
 function _drawRacers() {
   let template = ''
@@ -11,22 +9,36 @@ function _drawRacers() {
   document.getElementById('racers').innerHTML = template
 }
 
+function _startRace() {
+  setInterval(_moveRacers, 100)
+
+}
+
 function _moveRacers() {
   const racers = AppState.racers
   racers.forEach(r => r.distance += Math.floor(Math.random() * 3))
-  // move()
-  // document.getElementById(racers.forEach(r => r)
+  racers.forEach(r => r.move())
+  racers.forEach(r => document.getElementById(r.number).style.paddingLeft = r.distance + '%')
+}
+
+function _resetRace(){
+  const racers = AppState.racers
+  racers.forEach (r => r.distance = 0)
 }
 
 export class RaceController {  
   constructor() {
     this.drawRacers()
   }
-    drawRacers() {
-  _drawRacers()
-    }
+  drawRacers() {
+    _drawRacers()
+  }
+  
+  startRace() {
+    _startRace()
+  }
 
-    startRace() {
-      setInterval(_moveRacers, 100)
-    }
+  resetRace() {
+    _resetRace()
+  }
 }

@@ -9,8 +9,8 @@ export class Racer {
 
   get Template() {
     return `
-    <div id="${this.number}" class="col-12 bg-dark text-light m-1 p-1">
-    <span title="${this.name}">${this.picture}</span>
+    <div class="col-12 bg-dark text-light m-1 p-1">
+    <span id="${this.number}" title="${this.name}"  style="padding-left:0%;">${this.picture}</span>
     </div>
     `
   }
